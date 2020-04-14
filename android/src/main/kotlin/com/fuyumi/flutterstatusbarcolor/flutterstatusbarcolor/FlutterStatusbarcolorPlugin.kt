@@ -4,6 +4,7 @@ import android.os.Build
 import android.app.Activity
 import android.view.View
 import android.animation.ValueAnimator
+import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
@@ -12,7 +13,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 
-class FlutterStatusbarcolorPlugin private constructor(private var activity: Activity?) : MethodCallHandler, ActivityAware {
+class FlutterStatusbarcolorPlugin private constructor(private var activity: Activity?) : MethodCallHandler, ActivityAware, FlutterPlugin {
     companion object {
         @JvmStatic
         fun registerWith(registrar: Registrar): Unit {
@@ -106,5 +107,13 @@ class FlutterStatusbarcolorPlugin private constructor(private var activity: Acti
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
+    }
+
+    override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }
