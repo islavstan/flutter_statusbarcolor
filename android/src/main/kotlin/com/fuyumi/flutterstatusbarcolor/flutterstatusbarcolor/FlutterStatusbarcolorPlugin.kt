@@ -110,10 +110,10 @@ class FlutterStatusbarcolorPlugin private constructor(private var activity: Acti
     }
 
     override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+      
     }
 }
