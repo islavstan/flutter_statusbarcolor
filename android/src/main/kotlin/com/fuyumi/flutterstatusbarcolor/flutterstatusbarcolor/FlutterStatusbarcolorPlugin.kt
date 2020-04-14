@@ -10,7 +10,7 @@ import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.PluginRegistry.Registrar
 
-class FlutterStatusbarcolorPlugin private constructor(private val activity: Activity?) : MethodCallHandler {
+class FlutterStatusbarcolorPlugin private constructor(private val activity: Activity?) : MethodCallHandler, ActivityAware {
     companion object {
         @JvmStatic
         fun registerWith(registrar: Registrar): Unit {
@@ -20,7 +20,7 @@ class FlutterStatusbarcolorPlugin private constructor(private val activity: Acti
     }
 
     override fun onMethodCall(call: MethodCall, result: Result): Unit {
-        if (activity == null) return result.success(null)
+        val activity = activity?: return result.success(null)
 
         when (call.method) {
             "getstatusbarcolor" -> {
@@ -91,5 +91,18 @@ class FlutterStatusbarcolorPlugin private constructor(private val activity: Acti
             }
             else -> result.notImplemented()
         }
+    }
+
+    override fun onDetachedFromActivity() {
+    }
+
+    override fun onReattachedToActivityForConfigChanges(p0: ActivityPluginBinding) {
+    }
+
+    override fun onAttachedToActivity(p0: ActivityPluginBinding) {
+        activity = p0.activity
+    }
+
+    override fun onDetachedFromActivityForConfigChanges() {
     }
 }
