@@ -113,7 +113,7 @@ class FlutterStatusbarcolorPlugin : MethodCallHandler, ActivityAware, FlutterPlu
 
     override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         val channel = MethodChannel(binding.binaryMessenger, "plugins.fuyumi.com/statusbar")
-        channel.setMethodCallHandler(FlutterStatusbarcolorPlugin())
+        channel.setMethodCallHandler(this)
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
