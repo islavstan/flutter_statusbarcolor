@@ -9,8 +9,10 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.PluginRegistry.Registrar
+import io.flutter.embedding.engine.plugins.activity.ActivityAware
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 
-class FlutterStatusbarcolorPlugin private constructor(private val activity: Activity?) : MethodCallHandler, ActivityAware {
+class FlutterStatusbarcolorPlugin private constructor(private var activity: Activity?) : MethodCallHandler, ActivityAware {
     companion object {
         @JvmStatic
         fun registerWith(registrar: Registrar): Unit {
