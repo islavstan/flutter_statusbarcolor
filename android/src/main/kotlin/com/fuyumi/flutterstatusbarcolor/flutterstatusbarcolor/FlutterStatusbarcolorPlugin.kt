@@ -13,7 +13,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 
-class FlutterStatusbarcolorPlugin private constructor(private var activity: Activity?) : MethodCallHandler, ActivityAware, FlutterPlugin {
+class FlutterStatusbarcolorPlugin private constructor(var activity: Activity? = null) : MethodCallHandler, ActivityAware, FlutterPlugin {
     companion object {
         @JvmStatic
         fun registerWith(registrar: Registrar): Unit {
@@ -114,6 +114,6 @@ class FlutterStatusbarcolorPlugin private constructor(private var activity: Acti
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
-      
+
     }
 }
