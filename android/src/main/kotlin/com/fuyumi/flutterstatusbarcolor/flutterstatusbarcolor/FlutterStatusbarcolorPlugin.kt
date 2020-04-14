@@ -1,29 +1,31 @@
 package com.fuyumi.flutterstatusbarcolor.flutterstatusbarcolor
 
-import android.os.Build
-import android.app.Activity
-import android.view.View
 import android.animation.ValueAnimator
+import android.app.Activity
+import android.os.Build
+import android.view.View
 import io.flutter.embedding.engine.plugins.FlutterPlugin
+import io.flutter.embedding.engine.plugins.activity.ActivityAware
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
+import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.PluginRegistry.Registrar
-import io.flutter.embedding.engine.plugins.activity.ActivityAware
-import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 
-class FlutterStatusbarcolorPlugin private constructor(var activity: Activity? = null) : MethodCallHandler, ActivityAware, FlutterPlugin {
+class FlutterStatusbarcolorPlugin : MethodCallHandler, ActivityAware, FlutterPlugin {
+    private var activity: Activity? = null
+
     companion object {
         @JvmStatic
         fun registerWith(registrar: Registrar): Unit {
             val channel = MethodChannel(registrar.messenger(), "plugins.fuyumi.com/statusbar")
-            channel.setMethodCallHandler(FlutterStatusbarcolorPlugin(registrar.activity()))
+            channel.setMethodCallHandler(FlutterStatusbarcolorPlugin())
         }
     }
 
     override fun onMethodCall(call: MethodCall, result: Result): Unit {
-        val activity = activity?: return result.success(null)
+        val activity = activity ?: return result.success(null)
 
         when (call.method) {
             "getstatusbarcolor" -> {
